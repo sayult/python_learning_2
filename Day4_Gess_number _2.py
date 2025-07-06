@@ -24,8 +24,16 @@ def guess_number_game():   #游戏主函数
     print('*******猜数字游戏*******')
     print(f'在1-100里面猜一个数字，你有{max_attempts}次机会。')
 
-    while attempts <= max_attempts:
-        guess = 
+    while attempts < max_attempts:
+        guess = get_uesr_input(attempts)
+
+        if check_guess(guess, secret):
+            print(f'恭喜！你在{attempts+1}次尝试中猜中了数字！')
+            return True
+        attempts += 1
+    print(f'很遗憾，数字是{secret}，下次加油！')
+    return False
+        
 
 def check_guess(guess, secret):    #比较函数
     if guess == secret:
@@ -35,3 +43,14 @@ def check_guess(guess, secret):    #比较函数
     else:
         print('太大了！')
     return False
+
+guess_number_game()
+
+
+while True:
+    play_again = input('再玩一次？（Y/N）：')
+    if play_again.lower() != 'y':
+        break
+
+    guess_number_game()
+
